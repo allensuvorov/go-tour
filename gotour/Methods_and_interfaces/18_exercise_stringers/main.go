@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"strconv"
 )
 
 type IPAddr [4]byte
@@ -10,9 +11,8 @@ type IPAddr [4]byte
 func (ip IPAddr) String() string {
 	var addr strings.Builder
 	for i, v := range ip {
-		strconv.Itoa(int(v))
 		addr.WriteString(strconv.Itoa(int(v)))
-		if i := len(ip)-1 {	
+		if i != len(ip)-1 {	
 			addr.WriteString(".")
 		}
 	}
@@ -25,6 +25,6 @@ func main() {
 		"googleDNS": {8, 8, 8, 8},
 	}
 	for name, ip := range hosts {
-		fmt.Printf("%v: %\n", name, ip)
+		fmt.Printf("%v: %v\n", name, ip)
 	}
 }
